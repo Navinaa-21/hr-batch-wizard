@@ -10,33 +10,102 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdministrationRouteImport } from './routes/administration'
+import { Route as AuditTrailRouteImport } from './routes/audit-trail'
+import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as TemplatesRouteImport } from './routes/templates'
+import { Route as BatchesIndexRouteImport } from './routes/batches.index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdministrationRoute = AdministrationRouteImport.update({
+  id: '/administration',
+  path: '/administration',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuditTrailRoute = AuditTrailRouteImport.update({
+  id: '/audit-trail',
+  path: '/audit-trail',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TemplatesRoute = TemplatesRouteImport.update({
+  id: '/templates',
+  path: '/templates',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BatchesIndexRoute = BatchesIndexRouteImport.update({
+  id: '/batches/',
+  path: '/batches/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/administration': typeof AdministrationRoute
+  '/audit-trail': typeof AuditTrailRoute
+  '/dashboard': typeof DashboardRoute
+  '/templates': typeof TemplatesRoute
+  '/batches/': typeof BatchesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/administration': typeof AdministrationRoute
+  '/audit-trail': typeof AuditTrailRoute
+  '/dashboard': typeof DashboardRoute
+  '/templates': typeof TemplatesRoute
+  '/batches': typeof BatchesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/administration': typeof AdministrationRoute
+  '/audit-trail': typeof AuditTrailRoute
+  '/dashboard': typeof DashboardRoute
+  '/templates': typeof TemplatesRoute
+  '/batches/': typeof BatchesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/administration'
+    | '/audit-trail'
+    | '/dashboard'
+    | '/templates'
+    | '/batches/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/administration'
+    | '/audit-trail'
+    | '/dashboard'
+    | '/templates'
+    | '/batches'
+  id:
+    | '__root__'
+    | '/'
+    | '/administration'
+    | '/audit-trail'
+    | '/dashboard'
+    | '/templates'
+    | '/batches/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdministrationRoute: typeof AdministrationRoute
+  AuditTrailRoute: typeof AuditTrailRoute
+  DashboardRoute: typeof DashboardRoute
+  TemplatesRoute: typeof TemplatesRoute
+  BatchesIndexRoute: typeof BatchesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +117,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/administration': {
+      id: '/administration'
+      path: '/administration'
+      fullPath: '/administration'
+      preLoaderRoute: typeof AdministrationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/audit-trail': {
+      id: '/audit-trail'
+      path: '/audit-trail'
+      fullPath: '/audit-trail'
+      preLoaderRoute: typeof AuditTrailRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/templates': {
+      id: '/templates'
+      path: '/templates'
+      fullPath: '/templates'
+      preLoaderRoute: typeof TemplatesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/batches/': {
+      id: '/batches/'
+      path: '/batches'
+      fullPath: '/batches/'
+      preLoaderRoute: typeof BatchesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdministrationRoute: AdministrationRoute,
+  AuditTrailRoute: AuditTrailRoute,
+  DashboardRoute: DashboardRoute,
+  TemplatesRoute: TemplatesRoute,
+  BatchesIndexRoute: BatchesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
