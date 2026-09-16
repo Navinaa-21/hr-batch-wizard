@@ -11,10 +11,16 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdministrationRouteImport } from './routes/administration'
+import { Route as ApprovalsRouteImport } from './routes/approvals'
+import { Route as ArchiveRouteImport } from './routes/archive'
 import { Route as AuditTrailRouteImport } from './routes/audit-trail'
+import { Route as CreateOrderRouteImport } from './routes/create-order'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as TemplatesRouteImport } from './routes/templates'
 import { Route as BatchesIndexRouteImport } from './routes/batches.index'
+import { Route as BatchesBatchIdRouteImport } from './routes/batches.$batchId'
+import { Route as OrdersIndexRouteImport } from './routes/orders.index'
+import { Route as OrdersEmpIdRouteImport } from './routes/orders.$empId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -26,9 +32,24 @@ const AdministrationRoute = AdministrationRouteImport.update({
   path: '/administration',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApprovalsRoute = ApprovalsRouteImport.update({
+  id: '/approvals',
+  path: '/approvals',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ArchiveRoute = ArchiveRouteImport.update({
+  id: '/archive',
+  path: '/archive',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuditTrailRoute = AuditTrailRouteImport.update({
   id: '/audit-trail',
   path: '/audit-trail',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CreateOrderRoute = CreateOrderRouteImport.update({
+  id: '/create-order',
+  path: '/create-order',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardRoute = DashboardRouteImport.update({
@@ -46,66 +67,123 @@ const BatchesIndexRoute = BatchesIndexRouteImport.update({
   path: '/batches/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BatchesBatchIdRoute = BatchesBatchIdRouteImport.update({
+  id: '/batches/$batchId',
+  path: '/batches/$batchId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OrdersIndexRoute = OrdersIndexRouteImport.update({
+  id: '/orders/',
+  path: '/orders/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OrdersEmpIdRoute = OrdersEmpIdRouteImport.update({
+  id: '/orders/$empId',
+  path: '/orders/$empId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/administration': typeof AdministrationRoute
+  '/approvals': typeof ApprovalsRoute
+  '/archive': typeof ArchiveRoute
   '/audit-trail': typeof AuditTrailRoute
+  '/create-order': typeof CreateOrderRoute
   '/dashboard': typeof DashboardRoute
   '/templates': typeof TemplatesRoute
+  '/batches/$batchId': typeof BatchesBatchIdRoute
+  '/orders/$empId': typeof OrdersEmpIdRoute
   '/batches/': typeof BatchesIndexRoute
+  '/orders/': typeof OrdersIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/administration': typeof AdministrationRoute
+  '/approvals': typeof ApprovalsRoute
+  '/archive': typeof ArchiveRoute
   '/audit-trail': typeof AuditTrailRoute
+  '/create-order': typeof CreateOrderRoute
   '/dashboard': typeof DashboardRoute
   '/templates': typeof TemplatesRoute
+  '/batches/$batchId': typeof BatchesBatchIdRoute
+  '/orders/$empId': typeof OrdersEmpIdRoute
   '/batches': typeof BatchesIndexRoute
+  '/orders': typeof OrdersIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/administration': typeof AdministrationRoute
+  '/approvals': typeof ApprovalsRoute
+  '/archive': typeof ArchiveRoute
   '/audit-trail': typeof AuditTrailRoute
+  '/create-order': typeof CreateOrderRoute
   '/dashboard': typeof DashboardRoute
   '/templates': typeof TemplatesRoute
+  '/batches/$batchId': typeof BatchesBatchIdRoute
+  '/orders/$empId': typeof OrdersEmpIdRoute
   '/batches/': typeof BatchesIndexRoute
+  '/orders/': typeof OrdersIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/administration'
+    | '/approvals'
+    | '/archive'
     | '/audit-trail'
+    | '/create-order'
     | '/dashboard'
     | '/templates'
+    | '/batches/$batchId'
+    | '/orders/$empId'
     | '/batches/'
+    | '/orders/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/administration'
+    | '/approvals'
+    | '/archive'
     | '/audit-trail'
+    | '/create-order'
     | '/dashboard'
     | '/templates'
+    | '/batches/$batchId'
+    | '/orders/$empId'
     | '/batches'
+    | '/orders'
   id:
     | '__root__'
     | '/'
     | '/administration'
+    | '/approvals'
+    | '/archive'
     | '/audit-trail'
+    | '/create-order'
     | '/dashboard'
     | '/templates'
+    | '/batches/$batchId'
+    | '/orders/$empId'
     | '/batches/'
+    | '/orders/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdministrationRoute: typeof AdministrationRoute
+  ApprovalsRoute: typeof ApprovalsRoute
+  ArchiveRoute: typeof ArchiveRoute
   AuditTrailRoute: typeof AuditTrailRoute
+  CreateOrderRoute: typeof CreateOrderRoute
   DashboardRoute: typeof DashboardRoute
   TemplatesRoute: typeof TemplatesRoute
+  BatchesBatchIdRoute: typeof BatchesBatchIdRoute
+  OrdersEmpIdRoute: typeof OrdersEmpIdRoute
   BatchesIndexRoute: typeof BatchesIndexRoute
+  OrdersIndexRoute: typeof OrdersIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -124,11 +202,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdministrationRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/approvals': {
+      id: '/approvals'
+      path: '/approvals'
+      fullPath: '/approvals'
+      preLoaderRoute: typeof ApprovalsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/archive': {
+      id: '/archive'
+      path: '/archive'
+      fullPath: '/archive'
+      preLoaderRoute: typeof ArchiveRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/audit-trail': {
       id: '/audit-trail'
       path: '/audit-trail'
       fullPath: '/audit-trail'
       preLoaderRoute: typeof AuditTrailRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/create-order': {
+      id: '/create-order'
+      path: '/create-order'
+      fullPath: '/create-order'
+      preLoaderRoute: typeof CreateOrderRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dashboard': {
@@ -152,16 +251,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BatchesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/batches/$batchId': {
+      id: '/batches/$batchId'
+      path: '/batches/$batchId'
+      fullPath: '/batches/$batchId'
+      preLoaderRoute: typeof BatchesBatchIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/orders/': {
+      id: '/orders/'
+      path: '/orders'
+      fullPath: '/orders/'
+      preLoaderRoute: typeof OrdersIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/orders/$empId': {
+      id: '/orders/$empId'
+      path: '/orders/$empId'
+      fullPath: '/orders/$empId'
+      preLoaderRoute: typeof OrdersEmpIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdministrationRoute: AdministrationRoute,
+  ApprovalsRoute: ApprovalsRoute,
+  ArchiveRoute: ArchiveRoute,
   AuditTrailRoute: AuditTrailRoute,
+  CreateOrderRoute: CreateOrderRoute,
   DashboardRoute: DashboardRoute,
   TemplatesRoute: TemplatesRoute,
+  BatchesBatchIdRoute: BatchesBatchIdRoute,
+  OrdersEmpIdRoute: OrdersEmpIdRoute,
   BatchesIndexRoute: BatchesIndexRoute,
+  OrdersIndexRoute: OrdersIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
