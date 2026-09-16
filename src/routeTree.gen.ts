@@ -18,6 +18,9 @@ import { Route as CreateOrderRouteImport } from './routes/create-order'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as TemplatesRouteImport } from './routes/templates'
 import { Route as BatchesIndexRouteImport } from './routes/batches.index'
+import { Route as BatchesBatchIdRouteImport } from './routes/batches.$batchId'
+import { Route as OrdersIndexRouteImport } from './routes/orders.index'
+import { Route as OrdersEmpIdRouteImport } from './routes/orders.$empId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -64,6 +67,21 @@ const BatchesIndexRoute = BatchesIndexRouteImport.update({
   path: '/batches/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BatchesBatchIdRoute = BatchesBatchIdRouteImport.update({
+  id: '/batches/$batchId',
+  path: '/batches/$batchId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OrdersIndexRoute = OrdersIndexRouteImport.update({
+  id: '/orders/',
+  path: '/orders/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OrdersEmpIdRoute = OrdersEmpIdRouteImport.update({
+  id: '/orders/$empId',
+  path: '/orders/$empId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -74,7 +92,10 @@ export interface FileRoutesByFullPath {
   '/create-order': typeof CreateOrderRoute
   '/dashboard': typeof DashboardRoute
   '/templates': typeof TemplatesRoute
+  '/batches/$batchId': typeof BatchesBatchIdRoute
+  '/orders/$empId': typeof OrdersEmpIdRoute
   '/batches/': typeof BatchesIndexRoute
+  '/orders/': typeof OrdersIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -85,7 +106,10 @@ export interface FileRoutesByTo {
   '/create-order': typeof CreateOrderRoute
   '/dashboard': typeof DashboardRoute
   '/templates': typeof TemplatesRoute
+  '/batches/$batchId': typeof BatchesBatchIdRoute
+  '/orders/$empId': typeof OrdersEmpIdRoute
   '/batches': typeof BatchesIndexRoute
+  '/orders': typeof OrdersIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -97,7 +121,10 @@ export interface FileRoutesById {
   '/create-order': typeof CreateOrderRoute
   '/dashboard': typeof DashboardRoute
   '/templates': typeof TemplatesRoute
+  '/batches/$batchId': typeof BatchesBatchIdRoute
+  '/orders/$empId': typeof OrdersEmpIdRoute
   '/batches/': typeof BatchesIndexRoute
+  '/orders/': typeof OrdersIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -110,7 +137,10 @@ export interface FileRouteTypes {
     | '/create-order'
     | '/dashboard'
     | '/templates'
+    | '/batches/$batchId'
+    | '/orders/$empId'
     | '/batches/'
+    | '/orders/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -121,7 +151,10 @@ export interface FileRouteTypes {
     | '/create-order'
     | '/dashboard'
     | '/templates'
+    | '/batches/$batchId'
+    | '/orders/$empId'
     | '/batches'
+    | '/orders'
   id:
     | '__root__'
     | '/'
@@ -132,7 +165,10 @@ export interface FileRouteTypes {
     | '/create-order'
     | '/dashboard'
     | '/templates'
+    | '/batches/$batchId'
+    | '/orders/$empId'
     | '/batches/'
+    | '/orders/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -144,7 +180,10 @@ export interface RootRouteChildren {
   CreateOrderRoute: typeof CreateOrderRoute
   DashboardRoute: typeof DashboardRoute
   TemplatesRoute: typeof TemplatesRoute
+  BatchesBatchIdRoute: typeof BatchesBatchIdRoute
+  OrdersEmpIdRoute: typeof OrdersEmpIdRoute
   BatchesIndexRoute: typeof BatchesIndexRoute
+  OrdersIndexRoute: typeof OrdersIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -212,6 +251,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BatchesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/batches/$batchId': {
+      id: '/batches/$batchId'
+      path: '/batches/$batchId'
+      fullPath: '/batches/$batchId'
+      preLoaderRoute: typeof BatchesBatchIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/orders/': {
+      id: '/orders/'
+      path: '/orders'
+      fullPath: '/orders/'
+      preLoaderRoute: typeof OrdersIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/orders/$empId': {
+      id: '/orders/$empId'
+      path: '/orders/$empId'
+      fullPath: '/orders/$empId'
+      preLoaderRoute: typeof OrdersEmpIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -224,7 +284,10 @@ const rootRouteChildren: RootRouteChildren = {
   CreateOrderRoute: CreateOrderRoute,
   DashboardRoute: DashboardRoute,
   TemplatesRoute: TemplatesRoute,
+  BatchesBatchIdRoute: BatchesBatchIdRoute,
+  OrdersEmpIdRoute: OrdersEmpIdRoute,
   BatchesIndexRoute: BatchesIndexRoute,
+  OrdersIndexRoute: OrdersIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
