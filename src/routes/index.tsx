@@ -59,9 +59,10 @@ function LoginPage() {
                 <Label htmlFor="password">Password</Label>
                 <Input id="password" type="password" defaultValue="prototype" />
               </div>
-              <Button type="submit" className="w-full">
-                Sign In
+              <Button asChild type="submit" className="w-full">
+                <Link to="/dashboard">Sign In</Link>
               </Button>
+
             </form>
           </CardContent>
         </Card>
