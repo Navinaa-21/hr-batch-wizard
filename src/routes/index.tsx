@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { FileSignature } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -59,9 +59,10 @@ function LoginPage() {
                 <Label htmlFor="password">Password</Label>
                 <Input id="password" type="password" defaultValue="prototype" />
               </div>
-              <Button type="submit" className="w-full">
-                Sign In
+              <Button asChild type="submit" className="w-full">
+                <Link to="/dashboard">Sign In</Link>
               </Button>
+
             </form>
           </CardContent>
         </Card>

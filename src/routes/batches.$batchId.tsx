@@ -46,7 +46,7 @@ const stats = [
 
 function BatchDetailPage() {
   const { batchId } = useParams({ from: "/batches/$batchId" });
-  const batch = batches.find((b) => b.id === batchId) ?? batches[0];
+  const batch = batches.find((b) => b.id === batchId) ?? batches[0]!;
 
   return (
     <AppShell
