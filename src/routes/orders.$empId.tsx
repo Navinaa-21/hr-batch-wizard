@@ -32,8 +32,8 @@ const history = [
 
 function OrderDetailPage() {
   const { empId } = useParams({ from: "/orders/$empId" });
-  const order = orders.find((o) => o.empId === empId) ?? orders[0];
-  const emp = employees.find((e) => e.empId === empId) ?? employees[0];
+  const order = orders.find((o) => o.empId === empId) ?? orders[0]!;
+  const emp = employees.find((e) => e.empId === empId) ?? employees[0]!;
   const [mode, setMode] = useState<"return" | "reject" | null>(null);
 
   return (
