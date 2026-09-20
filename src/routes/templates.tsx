@@ -57,26 +57,26 @@ function TemplatesPage() {
         </Button>
       }
     >
-      <Card>
+      <Card className="border-border bg-card shadow-xs">
         <CardContent className="p-0">
           <div className="overflow-x-auto">
             <Table>
               <TableHeader>
-                <TableRow>
-                  <TableHead>Template Name</TableHead>
-                  <TableHead>Order Type</TableHead>
-                  <TableHead>Version</TableHead>
-                  <TableHead>Last Updated</TableHead>
-                  <TableHead>Status</TableHead>
-                  <TableHead className="text-right">Actions</TableHead>
+                <TableRow className="bg-muted/40 hover:bg-muted/40">
+                  <TableHead className="font-semibold text-foreground">Template Name</TableHead>
+                  <TableHead className="font-semibold text-foreground">Order Type</TableHead>
+                  <TableHead className="font-semibold text-foreground">Version</TableHead>
+                  <TableHead className="font-semibold text-foreground">Last Updated</TableHead>
+                  <TableHead className="font-semibold text-foreground">Status</TableHead>
+                  <TableHead className="font-semibold text-foreground text-right">Actions</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {templates.map((t) => (
-                  <TableRow key={t.name}>
-                    <TableCell className="font-medium">{t.name}</TableCell>
-                    <TableCell>{t.type}</TableCell>
-                    <TableCell>{t.version}</TableCell>
+                  <TableRow key={t.name} className="hover:bg-muted/30">
+                    <TableCell className="font-bold text-foreground">{t.name}</TableCell>
+                    <TableCell className="font-medium">{t.type}</TableCell>
+                    <TableCell className="font-medium text-xs">{t.version}</TableCell>
                     <TableCell className="text-muted-foreground">{t.updated}</TableCell>
                     <TableCell>
                       <StatusBadge status={t.status} />
@@ -87,6 +87,7 @@ function TemplatesPage() {
                           variant="outline"
                           size="sm"
                           onClick={() => setDialog({ mode: "view", name: t.name })}
+                          className="font-medium"
                         >
                           View
                         </Button>
@@ -94,6 +95,7 @@ function TemplatesPage() {
                           variant="outline"
                           size="sm"
                           onClick={() => setDialog({ mode: "edit", name: t.name })}
+                          className="font-medium"
                         >
                           Edit
                         </Button>

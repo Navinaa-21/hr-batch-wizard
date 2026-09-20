@@ -79,13 +79,20 @@ function BatchDetailPage() {
 
       <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-8">
         {stats.map(([k, v]) => (
-          <Card key={k}>
-            <CardContent className="p-4">
-              <p className="text-xs text-muted-foreground">{k}</p>
-              <p className="mt-1 text-lg font-semibold text-foreground">{v}</p>
+          <Card key={k} className="border-border bg-card shadow-xs">
+            <CardContent className="p-3.5">
+              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{k}</p>
+              <p className="mt-1 text-lg font-bold text-foreground">{v}</p>
             </CardContent>
           </Card>
         ))}
+      </div>
+
+      <div className="mt-4 rounded-lg border border-primary/20 bg-primary/5 p-4 text-xs leading-relaxed text-foreground flex items-center justify-between gap-4">
+        <div>
+          <span className="font-bold text-primary uppercase tracking-wide">Batch Architecture Note:</span>{" "}
+          Batch <span className="font-bold text-foreground">{batch.id}</span> comprises <span className="font-bold text-foreground">3,000 employees</span>. The system generated <span className="font-bold text-foreground">2,992 individual office order documents</span> for all valid records. Each employee order maintains its own lifecycle while remaining linked to this batch.
+        </div>
       </div>
 
       <Tabs defaultValue="employees" className="mt-6">

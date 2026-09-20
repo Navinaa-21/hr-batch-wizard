@@ -33,10 +33,10 @@ export const Route = createFileRoute("/dashboard")({
 function Dashboard() {
   return (
     <AppShell
-      title="Dashboard"
-      description="Overview of HR order processing"
+      title="Executive Dashboard"
+      description="Sakthi Auto Component Ltd. &bull; Bulk HR Order Processing Summary"
       actions={
-        <Button asChild>
+        <Button asChild className="font-semibold shadow-xs">
           <Link to="/create-order">
             <Plus className="size-4" />
             Create New Batch
@@ -45,46 +45,46 @@ function Dashboard() {
       }
     >
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <StatCard label="Total Batches" value="12" icon={Layers} hint="Across FY 2026-27" />
+        <StatCard label="Total Batches" value="12" icon={Layers} hint="FY 2026-27" />
         <StatCard label="Total Orders" value="3,248" icon={FileText} hint="Generated to date" />
         <StatCard label="Pending Approval" value="124" icon={Clock} hint="Awaiting reviewer action" />
-        <StatCard label="Completed" value="2,980" icon={CheckCircle2} hint="Signed, sent and archived" />
+        <StatCard label="Completed Orders" value="2,980" icon={CheckCircle2} hint="Signed, sent & archived" />
       </div>
 
-      <Card className="mt-6">
-        <CardHeader>
-          <CardTitle className="text-base">Recent Batches</CardTitle>
+      <Card className="mt-6 border-border bg-card shadow-xs">
+        <CardHeader className="border-b border-border bg-muted/30 px-6 py-4">
+          <CardTitle className="text-base font-bold text-foreground">Recent Order Batches</CardTitle>
         </CardHeader>
         <CardContent className="p-0">
           <div className="overflow-x-auto">
             <Table>
               <TableHeader>
-                <TableRow>
-                  <TableHead>Batch ID</TableHead>
-                  <TableHead>Order Type</TableHead>
-                  <TableHead className="text-right">Employees</TableHead>
-                  <TableHead className="text-right">Valid</TableHead>
-                  <TableHead className="text-right">Errors</TableHead>
-                  <TableHead>Status</TableHead>
-                  <TableHead>Created Date</TableHead>
+                <TableRow className="bg-muted/40 hover:bg-muted/40">
+                  <TableHead className="font-semibold text-foreground">Batch ID</TableHead>
+                  <TableHead className="font-semibold text-foreground">Order Type</TableHead>
+                  <TableHead className="font-semibold text-foreground text-right">Employees</TableHead>
+                  <TableHead className="font-semibold text-foreground text-right">Valid</TableHead>
+                  <TableHead className="font-semibold text-foreground text-right">Errors</TableHead>
+                  <TableHead className="font-semibold text-foreground">Status</TableHead>
+                  <TableHead className="font-semibold text-foreground">Created Date</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {batches.map((b) => (
-                  <TableRow key={b.id} className="cursor-pointer">
-                    <TableCell className="font-medium">
+                  <TableRow key={b.id} className="hover:bg-muted/30">
+                    <TableCell className="font-semibold">
                       <Link
                         to="/batches/$batchId"
                         params={{ batchId: b.id }}
-                        className="text-primary hover:underline"
+                        className="text-primary hover:underline font-bold"
                       >
                         {b.id}
                       </Link>
                     </TableCell>
-                    <TableCell>{b.orderType}</TableCell>
-                    <TableCell className="text-right">{b.employees.toLocaleString("en-IN")}</TableCell>
-                    <TableCell className="text-right">{b.valid.toLocaleString("en-IN")}</TableCell>
-                    <TableCell className="text-right">{b.errors}</TableCell>
+                    <TableCell className="font-medium text-foreground">{b.orderType}</TableCell>
+                    <TableCell className="text-right font-medium text-foreground">{b.employees.toLocaleString("en-IN")}</TableCell>
+                    <TableCell className="text-right font-medium text-[oklch(0.45_0.12_155)]">{b.valid.toLocaleString("en-IN")}</TableCell>
+                    <TableCell className="text-right font-medium text-destructive">{b.errors}</TableCell>
                     <TableCell>
                       <StatusBadge status={b.status} />
                     </TableCell>

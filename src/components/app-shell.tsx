@@ -40,19 +40,23 @@ export function AppShell({
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   return (
-    <div className="flex min-h-screen bg-background">
+    <div className="flex min-h-screen bg-background text-foreground">
       <aside className="sticky top-0 hidden h-screen w-64 shrink-0 flex-col border-r border-border bg-sidebar md:flex">
-        <div className="flex items-center gap-2 border-b border-border px-5 py-4">
-          <div className="flex size-9 items-center justify-center rounded-md bg-primary text-primary-foreground">
-            <FileSignature className="size-5" />
-          </div>
+        <div className="flex items-center gap-3 border-b border-border px-5 py-4">
+          <img
+            src="/sakthi-auto-logo.png"
+            alt="Sakthi Auto Logo"
+            className="h-9 w-auto object-contain"
+          />
           <div className="leading-tight">
-            <p className="text-sm font-semibold text-foreground">HR Order</p>
-            <p className="text-xs text-muted-foreground">Management System</p>
+            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+              Sakthi Auto
+            </p>
+            <p className="text-sm font-bold text-foreground">HR Portal</p>
           </div>
         </div>
 
-        <nav className="flex-1 space-y-1 overflow-y-auto p-3">
+        <nav className="flex-1 space-y-1 overflow-y-auto px-2 py-3">
           {nav.map((item) => {
             const active = pathname === item.to || pathname.startsWith(item.to + "/");
             return (
@@ -60,13 +64,13 @@ export function AppShell({
                 key={item.to}
                 to={item.to}
                 className={cn(
-                  "flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors",
+                  "flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium transition-all",
                   active
-                    ? "bg-primary-soft text-primary"
-                    : "text-muted-foreground hover:bg-muted hover:text-foreground",
+                    ? "border-l-4 border-primary bg-sidebar-accent text-foreground font-semibold"
+                    : "text-muted-foreground hover:bg-sidebar-accent hover:text-foreground",
                 )}
               >
-                <item.icon className="size-4" />
+                <item.icon className={cn("size-4 shrink-0", active ? "text-primary" : "text-muted-foreground")} />
                 {item.label}
               </Link>
             );
@@ -75,35 +79,36 @@ export function AppShell({
 
         <div className="border-t border-border p-4">
           <div className="flex items-center gap-3">
-            <div className="flex size-9 items-center justify-center rounded-full bg-muted text-sm font-semibold text-foreground">
-              HR
+            <div className="flex size-9 items-center justify-center rounded-full bg-primary/10 text-sm font-bold text-primary">
+              SA
             </div>
             <div className="leading-tight">
-              <p className="text-sm font-medium text-foreground">HR User</p>
-              <p className="text-xs text-muted-foreground">Role: HR User</p>
+              <p className="text-sm font-medium text-foreground">Sakthi Auto HR</p>
+              <p className="text-xs text-muted-foreground">Role: HR Admin</p>
             </div>
           </div>
         </div>
       </aside>
 
       <div className="flex min-w-0 flex-1 flex-col">
-        <header className="sticky top-0 z-10 border-b border-border bg-card/90 backdrop-blur">
-          <div className="flex flex-wrap items-center justify-between gap-3 px-6 py-4">
+        <header className="sticky top-0 z-10 border-b border-border bg-card/95 backdrop-blur">
+          <div className="flex flex-wrap items-center justify-between gap-3 px-6 py-3.5">
             <div>
-              <h1 className="text-xl font-semibold tracking-tight text-foreground">{title}</h1>
+              <h1 className="text-xl font-bold tracking-tight text-foreground">{title}</h1>
               {description ? (
                 <p className="mt-0.5 text-sm text-muted-foreground">{description}</p>
               ) : null}
             </div>
             {actions ? <div className="flex items-center gap-2">{actions}</div> : null}
           </div>
-          <nav className="flex gap-1 overflow-x-auto border-t border-border px-4 py-2 md:hidden">
+          <nav className="flex items-center gap-1 overflow-x-auto border-t border-border px-4 py-2 md:hidden">
+            <img src="/sakthi-auto-logo.png" alt="Sakthi Auto Logo" className="mr-2 h-6 w-auto object-contain" />
             {nav.map((item) => (
               <Link
                 key={item.to}
                 to={item.to}
-                className="whitespace-nowrap rounded-md px-3 py-1.5 text-xs font-medium text-muted-foreground hover:bg-muted"
-                activeProps={{ className: "bg-primary-soft text-primary" }}
+                className="whitespace-nowrap rounded-md px-2.5 py-1 text-xs font-medium text-muted-foreground hover:bg-muted"
+                activeProps={{ className: "bg-primary/10 text-primary font-semibold" }}
               >
                 {item.label}
               </Link>

@@ -59,20 +59,20 @@ function ArchivePage() {
 
   return (
     <AppShell title="Archive" description="Document management system — issued order records">
-      <Card>
+      <Card className="border-border bg-card shadow-xs">
         <CardContent className="p-5">
           <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
             {["Employee ID", "Employee Name", "Department", "Order Type", "Financial Year", "Order Number"].map(
               (f) => (
                 <div key={f} className="space-y-2">
-                  <Label htmlFor={f}>{f}</Label>
-                  <Input id={f} placeholder={`Search by ${f.toLowerCase()}`} onChange={(e) => setQ(e.target.value)} />
+                  <Label htmlFor={f} className="font-medium text-foreground">{f}</Label>
+                  <Input id={f} placeholder={`Search by ${f.toLowerCase()}`} onChange={(e) => setQ(e.target.value)} className="bg-background" />
                 </div>
               ),
             )}
           </div>
           <div className="mt-4">
-            <Button>
+            <Button className="font-semibold shadow-xs">
               <Search className="size-4" />
               Search Archive
             </Button>
@@ -80,40 +80,40 @@ function ArchivePage() {
         </CardContent>
       </Card>
 
-      <Card className="mt-4">
+      <Card className="mt-4 border-border bg-card shadow-xs">
         <CardContent className="overflow-x-auto p-0">
           <Table>
             <TableHeader>
-              <TableRow>
-                <TableHead>Employee</TableHead>
-                <TableHead>Order Number</TableHead>
-                <TableHead>Order Type</TableHead>
-                <TableHead>Effective Date</TableHead>
-                <TableHead>Archived Date</TableHead>
-                <TableHead>Version</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead className="text-right">Document</TableHead>
+              <TableRow className="bg-muted/40 hover:bg-muted/40">
+                <TableHead className="font-semibold text-foreground">Employee</TableHead>
+                <TableHead className="font-semibold text-foreground">Order Number</TableHead>
+                <TableHead className="font-semibold text-foreground">Order Type</TableHead>
+                <TableHead className="font-semibold text-foreground">Effective Date</TableHead>
+                <TableHead className="font-semibold text-foreground">Archived Date</TableHead>
+                <TableHead className="font-semibold text-foreground">Version</TableHead>
+                <TableHead className="font-semibold text-foreground">Status</TableHead>
+                <TableHead className="font-semibold text-foreground text-right">Document</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {rows.map((a) => (
-                <TableRow key={a.orderNumber}>
+                <TableRow key={a.orderNumber} className="hover:bg-muted/30">
                   <TableCell>
-                    <p className="font-medium text-foreground">{a.employee}</p>
+                    <p className="font-semibold text-foreground">{a.employee}</p>
                     <p className="text-xs text-muted-foreground">
-                      {a.empId} • {a.department}
+                      {a.empId} &bull; {a.department}
                     </p>
                   </TableCell>
-                  <TableCell>{a.orderNumber}</TableCell>
-                  <TableCell>{a.orderType}</TableCell>
+                  <TableCell className="font-bold text-primary">{a.orderNumber}</TableCell>
+                  <TableCell className="font-medium">{a.orderType}</TableCell>
                   <TableCell>{a.effective}</TableCell>
                   <TableCell className="text-muted-foreground">{a.archivedDate}</TableCell>
-                  <TableCell>{a.version}</TableCell>
+                  <TableCell className="font-medium text-xs">{a.version}</TableCell>
                   <TableCell>
                     <StatusBadge status={a.status} />
                   </TableCell>
                   <TableCell className="text-right">
-                    <Button variant="outline" size="sm" onClick={() => setDoc(a)}>
+                    <Button variant="outline" size="sm" onClick={() => setDoc(a)} className="font-medium">
                       <FileText className="size-4" />
                       View Document
                     </Button>

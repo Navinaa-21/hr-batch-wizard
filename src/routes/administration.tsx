@@ -47,24 +47,24 @@ function AdministrationPage() {
         </TabsList>
 
         <TabsContent value="users" className="mt-4">
-          <Card>
+          <Card className="border-border bg-card shadow-xs">
             <CardContent className="p-0">
               <Table>
                 <TableHeader>
-                  <TableRow>
-                    <TableHead>Name</TableHead>
-                    <TableHead>Login</TableHead>
-                    <TableHead>Role</TableHead>
-                    <TableHead>Permissions</TableHead>
+                  <TableRow className="bg-muted/40 hover:bg-muted/40">
+                    <TableHead className="font-semibold text-foreground">Name</TableHead>
+                    <TableHead className="font-semibold text-foreground">Login</TableHead>
+                    <TableHead className="font-semibold text-foreground">Role</TableHead>
+                    <TableHead className="font-semibold text-foreground">Permissions</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {adminUsers.map((u) => (
-                    <TableRow key={u.login}>
-                      <TableCell className="font-medium">{u.name}</TableCell>
+                    <TableRow key={u.login} className="hover:bg-muted/30">
+                      <TableCell className="font-semibold text-foreground">{u.name}</TableCell>
                       <TableCell className="text-muted-foreground">{u.login}</TableCell>
                       <TableCell>
-                        <span className="inline-flex rounded-full bg-primary-soft px-2.5 py-0.5 text-xs font-medium text-primary">
+                        <span className="inline-flex rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-bold text-primary">
                           {u.role}
                         </span>
                       </TableCell>
@@ -73,7 +73,7 @@ function AdministrationPage() {
                           {u.permissions.map((p) => (
                             <span
                               key={p}
-                              className="rounded-md bg-muted px-2 py-0.5 text-xs text-muted-foreground"
+                              className="rounded-md bg-muted px-2 py-0.5 text-xs text-muted-foreground font-medium"
                             >
                               {p}
                             </span>
@@ -91,13 +91,13 @@ function AdministrationPage() {
         <TabsContent value="roles" className="mt-4">
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {roles.map((r) => (
-              <Card key={r.role}>
+              <Card key={r.role} className="border-border bg-card shadow-xs">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-base">{r.role}</CardTitle>
+                  <CardTitle className="text-base font-bold text-foreground">{r.role}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-sm text-muted-foreground">{r.description}</p>
-                  <p className="mt-3 text-sm font-medium text-foreground">{r.users} users assigned</p>
+                  <p className="mt-3 text-xs font-bold uppercase tracking-wider text-primary">{r.users} users assigned</p>
                 </CardContent>
               </Card>
             ))}
@@ -105,23 +105,23 @@ function AdministrationPage() {
         </TabsContent>
 
         <TabsContent value="permissions" className="mt-4">
-          <Card>
+          <Card className="border-border bg-card shadow-xs">
             <CardContent className="overflow-x-auto p-0">
               <Table>
                 <TableHeader>
-                  <TableRow>
-                    <TableHead>Permission</TableHead>
-                    <TableHead className="text-center">HR User</TableHead>
-                    <TableHead className="text-center">HR Reviewer</TableHead>
-                    <TableHead className="text-center">HR Head</TableHead>
-                    <TableHead className="text-center">Signatory</TableHead>
-                    <TableHead className="text-center">Administrator</TableHead>
+                  <TableRow className="bg-muted/40 hover:bg-muted/40">
+                    <TableHead className="font-semibold text-foreground">Permission</TableHead>
+                    <TableHead className="text-center font-semibold text-foreground">HR User</TableHead>
+                    <TableHead className="text-center font-semibold text-foreground">HR Reviewer</TableHead>
+                    <TableHead className="text-center font-semibold text-foreground">HR Head</TableHead>
+                    <TableHead className="text-center font-semibold text-foreground">Signatory</TableHead>
+                    <TableHead className="text-center font-semibold text-foreground">Administrator</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {permissionMatrix.map((p) => (
-                    <TableRow key={p.permission}>
-                      <TableCell className="font-medium">{p.permission}</TableCell>
+                    <TableRow key={p.permission} className="hover:bg-muted/30">
+                      <TableCell className="font-semibold text-foreground">{p.permission}</TableCell>
                       {[p.hrUser, p.reviewer, p.head, p.signatory, p.admin].map((v, i) => (
                         <TableCell key={i}>
                           <div className="flex justify-center">

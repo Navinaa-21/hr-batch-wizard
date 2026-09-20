@@ -134,14 +134,18 @@ function OrderDetailPage() {
               <CardTitle className="text-base">Document Preview</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="mx-auto max-w-2xl rounded-md border border-border bg-card p-8 shadow-sm">
-                <p className="text-center text-xs uppercase tracking-widest text-muted-foreground">
-                  Human Resources Department
-                </p>
-                <p className="mt-3 text-center text-lg font-semibold uppercase tracking-wide text-foreground">
+              <div className="mx-auto max-w-2xl rounded-md border border-border bg-white p-8 text-sm leading-relaxed text-foreground shadow-xs">
+                <div className="flex items-center justify-between border-b border-border pb-4 mb-6">
+                  <img src="/sakthi-auto-logo.png" alt="Sakthi Auto" className="h-10 w-auto object-contain" />
+                  <div className="text-right">
+                    <p className="font-bold uppercase tracking-wider text-xs text-foreground">Sakthi Auto Component Ltd.</p>
+                    <p className="text-xs text-muted-foreground">Human Resources Department</p>
+                  </div>
+                </div>
+                <p className="text-center text-lg font-bold uppercase tracking-wide text-foreground">
                   Office Order
                 </p>
-                <div className="mt-4 flex justify-between text-xs text-muted-foreground">
+                <div className="mt-2 flex justify-between text-xs text-muted-foreground font-medium">
                   <span>Ref: {order.orderNumber}</span>
                   <span>Date: {order.submittedDate}</span>
                 </div>
@@ -149,21 +153,21 @@ function OrderDetailPage() {
                   <p>
                     With reference to the {order.orderType.toLowerCase()} exercise for{" "}
                     {order.financialYear}, the following is ordered in respect of{" "}
-                    <span className="font-medium">{emp.name}</span> ({emp.empId}), {emp.designation},{" "}
+                    <span className="font-bold text-foreground">{emp.name}</span> ({emp.empId}), {emp.designation},{" "}
                     {emp.department}.
                   </p>
                   <p>
                     The annual compensation is revised to{" "}
-                    <span className="font-medium">{emp.salary}</span> with effect from{" "}
-                    <span className="font-medium">{order.effective}</span>. The employee continues in
-                    grade {emp.grade}.
+                    <span className="font-bold text-foreground">{emp.salary}</span> with effect from{" "}
+                    <span className="font-semibold text-foreground">{order.effective}</span>. The employee continues in
+                    grade <span className="font-semibold">{emp.grade}</span>.
                   </p>
                   <p>All other terms and conditions of employment remain unchanged.</p>
                 </div>
-                <div className="mt-12 text-sm">
-                  <p className="font-medium text-foreground">Authorised Signatory</p>
-                  <p className="text-xs text-muted-foreground">
-                    Digital signature pending — applied after final approval
+                <div className="mt-10 border-t border-border pt-4 text-xs text-muted-foreground">
+                  <p className="font-bold text-foreground text-sm">Authorized Signatory</p>
+                  <p className="mt-0.5">
+                    Digital signature pending &mdash; applied automatically upon final approval
                   </p>
                 </div>
               </div>

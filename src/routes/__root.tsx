@@ -80,7 +80,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "HR Order Management System" },
       { name: "description", content: "Internal system for bulk employee order processing, approval and archival." },
-      { name: "author", content: "Lovable" },
+      { name: "author", content: "Sakthi Auto Component Ltd." },
       { property: "og:title", content: "HR Order Management System" },
       { property: "og:description", content: "Internal system for bulk employee order processing." },
       { property: "og:type", content: "website" },
@@ -89,10 +89,23 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     links: [
       {
+        rel: "preconnect",
+        href: "https://fonts.googleapis.com",
+      },
+      {
+        rel: "preconnect",
+        href: "https://fonts.gstatic.com",
+        crossOrigin: "anonymous",
+      },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap",
+      },
+      {
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/sakthi-auto-logo.png", type: "image/png" },
     ],
   }),
   shellComponent: RootShell,

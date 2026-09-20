@@ -69,30 +69,30 @@ const steps = ["Order Type", "Upload Excel", "Validation", "Preview", "Generate"
 
 function Stepper({ step }: { step: number }) {
   return (
-    <div className="mb-6 flex flex-wrap items-center gap-y-3">
+    <div className="mb-6 flex flex-wrap items-center gap-y-3 rounded-lg border border-border bg-card p-4 shadow-xs">
       {steps.map((s, i) => (
         <div key={s} className="flex items-center">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2.5">
             <div
               className={cn(
-                "flex size-7 items-center justify-center rounded-full text-xs font-semibold",
-                i < step && "bg-success-soft text-[oklch(0.45_0.12_155)]",
-                i === step && "bg-primary text-primary-foreground",
-                i > step && "border border-border bg-card text-muted-foreground",
+                "flex size-8 items-center justify-center rounded-full text-xs font-bold transition-all",
+                i < step && "bg-success/15 text-success",
+                i === step && "bg-primary text-primary-foreground shadow-xs ring-2 ring-primary/20",
+                i > step && "border border-border bg-muted text-muted-foreground",
               )}
             >
-              {i < step ? <Check className="size-4" /> : i + 1}
+              {i < step ? <Check className="size-4 stroke-[2.5]" /> : i + 1}
             </div>
             <span
               className={cn(
-                "text-sm",
-                i === step ? "font-semibold text-foreground" : "text-muted-foreground",
+                "text-xs font-medium uppercase tracking-wide",
+                i === step ? "font-bold text-foreground" : i < step ? "font-medium text-foreground" : "text-muted-foreground",
               )}
             >
               {s}
             </span>
           </div>
-          {i < steps.length - 1 ? <div className="mx-3 h-px w-8 bg-border" aria-hidden /> : null}
+          {i < steps.length - 1 ? <div className="mx-3 h-0.5 w-6 bg-border" aria-hidden /> : null}
         </div>
       ))}
     </div>
@@ -328,27 +328,38 @@ function CreateOrderPage() {
           </div>
 
           <Dialog open={preview !== null} onOpenChange={(o) => !o && setPreview(null)}>
-            <DialogContent className="max-w-2xl">
+            <DialogContent className="max-w-2xl bg-card border-border">
               <DialogHeader>
-                <DialogTitle>Order Preview — {preview?.name}</DialogTitle>
-                <DialogDescription>Draft document generated from the selected template.</DialogDescription>
+                <DialogTitle className="text-foreground font-bold">Office Order Preview &mdash; {preview?.name}</DialogTitle>
+                <DialogDescription className="text-muted-foreground">Draft order document generated from template.</DialogDescription>
               </DialogHeader>
-              <div className="rounded-md border border-border bg-card p-6 text-sm leading-relaxed">
-                <p className="text-center font-semibold uppercase tracking-wide">Office Order</p>
-                <p className="mt-1 text-center text-xs text-muted-foreground">
-                  Ref: INC/2026/000XXX &nbsp;•&nbsp; Date: 15 Sep 2026
-                </p>
-                <p className="mt-5">
+              <div className="rounded-md border border-border bg-white p-8 text-sm leading-relaxed text-foreground shadow-xs">
+                <div className="flex items-center justify-between border-b border-border pb-4 mb-6">
+                  <img src="/sakthi-auto-logo.png" alt="Sakthi Auto" className="h-10 w-auto object-contain" />
+                  <div className="text-right">
+                    <p className="font-bold uppercase tracking-wider text-xs text-foreground">Sakthi Auto Component Ltd.</p>
+                    <p className="text-xs text-muted-foreground">Human Resources Department</p>
+                  </div>
+                </div>
+                <p className="text-center font-bold text-lg uppercase tracking-wide text-foreground">Office Order</p>
+                <div className="mt-2 flex justify-between text-xs text-muted-foreground font-medium">
+                  <span>Ref: INC/2026/000145</span>
+                  <span>Date: 15 Sep 2026</span>
+                </div>
+                <p className="mt-6">
                   With reference to the annual appraisal exercise for FY 2026-27, the salary of{" "}
-                  <span className="font-medium">{preview?.name}</span> ({preview?.empId}),{" "}
+                  <span className="font-bold text-foreground">{preview?.name}</span> ({preview?.empId}),{" "}
                   {preview?.designation}, {preview?.department}, is revised to{" "}
-                  <span className="font-medium">{preview?.salary}</span> per annum with effect from{" "}
-                  {preview?.effective}.
+                  <span className="font-bold text-foreground">{preview?.salary}</span> per annum with effect from{" "}
+                  <span className="font-semibold">{preview?.effective}</span>.
                 </p>
-                <p className="mt-3">
+                <p className="mt-4">
                   All other terms and conditions of employment remain unchanged.
                 </p>
-                <p className="mt-8 text-muted-foreground">Authorised Signatory</p>
+                <div className="mt-10 border-t border-border pt-4 text-xs text-muted-foreground">
+                  <p className="font-bold text-foreground text-sm">Authorized Signatory</p>
+                  <p className="mt-0.5">Sakthi Auto Component Ltd. &bull; Enterprise HR System</p>
+                </div>
               </div>
             </DialogContent>
           </Dialog>

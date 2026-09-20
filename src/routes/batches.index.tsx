@@ -43,39 +43,39 @@ function BatchesPage() {
         </Button>
       }
     >
-      <Card>
+      <Card className="border-border bg-card shadow-xs">
         <CardContent className="p-0">
           <div className="overflow-x-auto">
             <Table>
               <TableHeader>
-                <TableRow>
-                  <TableHead>Batch ID</TableHead>
-                  <TableHead>Title</TableHead>
-                  <TableHead>Order Type</TableHead>
-                  <TableHead className="text-right">Employees</TableHead>
-                  <TableHead className="text-right">Valid</TableHead>
-                  <TableHead className="text-right">Errors</TableHead>
-                  <TableHead>Status</TableHead>
-                  <TableHead>Created</TableHead>
+                <TableRow className="bg-muted/40 hover:bg-muted/40">
+                  <TableHead className="font-semibold text-foreground">Batch ID</TableHead>
+                  <TableHead className="font-semibold text-foreground">Title</TableHead>
+                  <TableHead className="font-semibold text-foreground">Order Type</TableHead>
+                  <TableHead className="font-semibold text-foreground text-right">Employees</TableHead>
+                  <TableHead className="font-semibold text-foreground text-right">Valid</TableHead>
+                  <TableHead className="font-semibold text-foreground text-right">Errors</TableHead>
+                  <TableHead className="font-semibold text-foreground">Status</TableHead>
+                  <TableHead className="font-semibold text-foreground">Created</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {batches.map((b) => (
-                  <TableRow key={b.id}>
-                    <TableCell className="font-medium">
+                  <TableRow key={b.id} className="hover:bg-muted/30">
+                    <TableCell className="font-bold">
                       <Link
                         to="/batches/$batchId"
                         params={{ batchId: b.id }}
-                        className="text-primary hover:underline"
+                        className="text-primary hover:underline font-bold"
                       >
                         {b.id}
                       </Link>
                     </TableCell>
-                    <TableCell>{b.title}</TableCell>
+                    <TableCell className="font-medium text-foreground">{b.title}</TableCell>
                     <TableCell>{b.orderType}</TableCell>
-                    <TableCell className="text-right">{b.employees.toLocaleString("en-IN")}</TableCell>
-                    <TableCell className="text-right">{b.valid.toLocaleString("en-IN")}</TableCell>
-                    <TableCell className="text-right">{b.errors}</TableCell>
+                    <TableCell className="text-right font-medium text-foreground">{b.employees.toLocaleString("en-IN")}</TableCell>
+                    <TableCell className="text-right font-medium text-[oklch(0.45_0.12_155)]">{b.valid.toLocaleString("en-IN")}</TableCell>
+                    <TableCell className="text-right font-medium text-destructive">{b.errors}</TableCell>
                     <TableCell>
                       <StatusBadge status={b.status} />
                     </TableCell>
